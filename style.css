@@ -1,0 +1,133 @@
+
+
+body {
+    margin: 0;
+    background-color: black;
+    min-height: 100vh;
+    min-width: 100vw;
+    overflow: hidden;
+    color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
+
+
+header {
+    position: relative;
+    z-index: 1;
+    color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Styling for background images */
+.background-design {
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: -2;
+}
+
+.background-design .bg-img1 {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    height: 90vh;
+    top: 5vh;
+    left: -20vw;
+    transform: rotate(90deg);
+}
+
+.background-design .bg-img2 {
+    position: absolute;
+    bottom: 0;
+    right: -230px;
+    height: 50vh;
+}
+
+.background-design .bg-img3 {
+    height: 50vh;
+    position: absolute;
+    /* margin-left: auto;
+    margin-right: auto;
+    left: 0; */
+    right: -170px;
+    top: 0;
+    
+}
+
+
+.background-design .bg-img4 {
+    height: 35vh;
+    position: absolute;
+    left: 40vw;
+    top: 0;
+    
+}
+
+
+
+.overlay {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    height: 100vh;
+    width: 100vw;
+
+    position: relative;
+    z-index: 2;
+    
+}
+
+.random-blob1 {
+    height: 500px;
+    width: 500px;
+    position: absolute;
+    bottom: 0;
+    margin-left: 120px;
+    background-color: #0093E9;
+    background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+.random-blob2 {
+    height: 500px;
+    width: 500px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 120px;
+    background-color: #0093E9;
+    background-color: #FFE53B;
+    background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 74%);
+        border-radius: 50%;
+    z-index: 0;
+    /* box-shadow: 20px 0 200px 10px #ff252559; */
+
+}
+
+.random-blob3 {
+    height: 300px;
+    width: 300px;
+    position: absolute;
+    top: 10px;
+    right: 100px;
+    /* box-shadow: 0 0 20px 10px #b565da9c; */
+    background-color: #0093E9;
+    background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
+    border-radius: 50%;
+    z-index: 0;
+}
