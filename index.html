@@ -6,11 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meals App</title>
 
+    <!-- Animate Css CDN -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
+    <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+    <!-- App Background Design -->
     <div class="background-design">
         
         <div class="random-blob1"></div>
@@ -29,7 +37,9 @@
         
     </div>
 
-    <header>
+
+    <!-- Navigation Bar -->
+    <header class="nav-bar animate__animated">
         <div class="branding">
             <p class="brand-name"> <span>H</span>appy <span>M</span>eals</p>
         </div>
@@ -44,24 +54,52 @@
             <i class="fa-solid fa-location-arrow"></i>
             <i class="fa-solid fa-bowl-food"></i>
             <img src="./img/profile.jpeg" alt="">
-
         </div>
     </header>
     
-    <div class="main-container">
+
+    <!-- Main content -->
+    <div class="main-container center-main">
         <div class="slogan">
             <p>Get the best health, home cooked food in town - Recipes</p>
             <h1>Enjoy Healthy Meals</h1>
         </div>
-        <div class="search-bar">
+
+        <!-- Search Bar -->
+        <div id="search-bar1" class="search-bar animate__animated">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="Wanna cook apple pie?">
+            <input id="search-input" onkeyup="getList()" type="text" placeholder="Wanna cook apple pie?">
             <button>Search</button>
         </div>
 
-        <div class="food-cards">
-            <!-- <div class="card">
+        
 
+        <!-- Show search results -->
+        <div id="cards-container" class="animate__animated meal-cards">
+
+            <!-- <div class="card">
+                <div class="card-img">
+                    <img src="https://www.themealdb.com/images/media/meals/qtqwwu1511792650.jpg" alt="">
+                </div>
+
+                <div class="card-header">
+                    <p>Applie Pie</p>
+                    <p class="slash">/</p>
+                    <p>Dessert</p>
+                </div>
+
+                <div class="shape"></div>
+
+                <div class="card-info">
+                    <p class="area"><i class="fa-solid fa-earth-americas"></i> British</p>
+                    <p class="tags"><i class="fa-solid fa-tags"></i> Tart, Baking, Fruity</p>
+                </div>
+                
+                <div class="card-footer">
+                    <p>See Details </p>
+                    <i class="fa-regular fa-heart"></i>
+                    
+                </div>
             </div> -->
 
             
@@ -71,5 +109,62 @@
     <footer>
 
     </footer>
+
+
+
+
+
+    <!-- Display Meal Details -->
+    <!-- <div class="meal-details">
+        <div class="meal-img">
+            <img src="https://www.themealdb.com/images/media/meals/qtqwwu1511792650.jpg" alt="">
+        </div>
+
+        <div class="meal-header">
+            <p>Applie Pie</p>
+            <p class="slash">/</p>
+            <p>Dessert</p>
+        </div>
+
+        <div class="meal-details-bg"></div>
+
+        <div class="meal-info-nav">
+            <p>Ingredients</p>
+            <p>Recipe</p>
+        </div>
+
+        <div class="ingredients-list">
+            <ul>
+                <li>1/2 cup unsalted butter</li>
+                <li>3 tablespoons all-purpose flour</li>
+                <li>1/4 cup water</li>
+                <li>3 tablespoons all-purpose flour</li>
+                <li>1/4 cup water</li>
+                <li>1/2 cup white sugar</li>
+                <li>1/2 cup packed brown sugar</li>
+                <li>8 Granny Smith apples - peeled, cored and sliced</li>
+            </ul>
+        </div>
+
+        <div class="recipe-info hide">
+            <p>1. Preheat oven to 425 degrees F (220 degrees C). Melt the butter in a saucepan. Stir in
+                flour to form a paste. Add water, white sugar and brown sugar, and bring to a boil. Reduce
+                temperature and let simmer.</p>
+            <p>2. Place the bottom crust in your pan. Fill with apples, mounded slightly. Cover with a
+                lattice work crust. Gently pour the sugar and butter liquid over the crust. Pour slowly so
+                that it does not run off.</p>
+            <p>3. Bake 15 minutes in the preheated oven. Reduce the temperature to 350 degrees F (175
+                degrees C). Continue baking for 35 to 45 minutes, until apples are soft.</p>
+        </div>
+        
+        <div class="meal-footer">
+            <p><i class="fa-brands fa-youtube"></i> Watch on Youtube</p>
+            <i class="fa-regular fa-heart"></i>
+            
+        </div>
+    </div> -->
+
+
+    <script src="script.js"></script>
 </body>
 </html>
