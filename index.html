@@ -14,7 +14,12 @@
 
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/favoritesList.css">
+    <link rel="stylesheet" href="./css/mealCard.css">
+    <link rel="stylesheet" href="./css/mealDetails.css">
+    <link rel="stylesheet" href="./css/navbar.css">
+    <link rel="stylesheet" href="./css/searchBar.css">
 </head>
 <body>
 
@@ -43,15 +48,15 @@
 
 
     <!-- Navigation Bar -->
-    <header class="nav-bar animate__animated">
+    <header class="nav-bar navbar-scroll-effect">
         <div class="branding">
             <p class="brand-name"> <span>H</span>appy <span>M</span>eals</p>
         </div>
 
         <div class="menu">
             <p class="active">Search</p>
-            <p onclick="showFavorites()">Favorites</p>
-            <p>About Us</p>
+            <p class="favorites-nav" onclick="showFavorites()">Favorites</p>
+            <p class="about-us-nav">About Us</p>
         </div>
 
         <div class="profile-section">
@@ -71,6 +76,12 @@
 
         <!-- Search Bar -->
         <div id="search-bar1" class="search-bar animate__animated">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input id="search-input" onkeyup="getList()" type="search" placeholder="Wanna cook apple pie?">
+            <button>Search</button>
+        </div>
+
+        <div id="dummy-space" class="search-bar dummy-space hide">
             <i class="fa-solid fa-magnifying-glass"></i>
             <input id="search-input" onkeyup="getList()" type="text" placeholder="Wanna cook apple pie?">
             <button>Search</button>

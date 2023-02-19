@@ -1,0 +1,231 @@
+
+
+body {
+    margin: 0;
+    background-color: black;
+    min-height: 100vh;
+    min-width: 100vw;
+    /* overflow: hidden; */
+    overflow-x: hidden;
+    color: white;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
+
+
+
+
+
+
+
+/* Main container */
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80vh;
+
+    transition: 0.4s all ease-out;
+}
+
+
+.main-container .slogan {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-container .slogan p {
+    margin: 0;
+    color: #EBF5CB;
+    font-size: 1.3rem;
+
+}
+
+.main-container .slogan h1 {
+    font-size: 5rem;
+    margin: 0;
+    margin-bottom: 40px;
+    color: #BDE986;
+}
+
+
+/* css to center main-container when there is search result */
+.center-main {
+    justify-content: center;
+}
+
+
+
+
+
+
+
+/* Styling for background images */
+.background-design {
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: -2;
+    
+
+}
+
+.background-design .bg-img1 {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    height: 90vh;
+    top: 5vh;
+    left: -20vw;
+    transform: rotate(90deg);
+}
+
+.background-design .bg-img2 {
+    position: absolute;
+    bottom: 0;
+    right: -230px;
+    height: 50vh;
+}
+
+.background-design .bg-img3 {
+    height: 50vh;
+    position: absolute;
+    /* margin-left: auto;
+    margin-right: auto;
+    left: 0; */
+    right: -170px;
+    top: 0;
+    
+}
+
+
+.background-design .bg-img4 {
+    height: 35vh;
+    position: absolute;
+    left: 40vw;
+    top: 0;
+    
+}
+
+
+
+.overlay {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+    z-index: 2;
+    
+}
+
+.random-blob1 {
+    height: 500px;
+    width: 500px;
+    position: absolute;
+    bottom: 10px;
+    margin-left: 120px;
+    background-color: #0093E9;
+    background-image: linear-gradient(45deg, #85FFBD 0%, #FFFB7D 100%);
+    border-radius: 50%;
+    z-index: 0;
+    transform: translateZ(0);
+
+    /* animation: morph 6s ease-in-out infinite; */
+
+}
+
+.random-blob2 {
+    height: 500px;
+    width: 500px;
+    position: absolute;
+    bottom: 10px;
+    right: 0;
+    margin-right: 120px;
+    background-color: #0093E9;
+    background-color: #FFE53B;
+    background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 74%);
+        border-radius: 50%;
+    z-index: 0;
+    transform: translateZ(0);
+
+    /* box-shadow: 20px 0 200px 10px #ff252559; */
+    /* animation: morph 9s ease-in-out infinite; */
+
+
+}
+
+.random-blob3 {
+    height: 300px;
+    width: 300px;
+    position: absolute;
+    top: 10px;
+    right: 100px;
+    /* box-shadow: 0 0 20px 10px #b565da9c; */
+    background-color: #0093E9;
+    background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
+    border-radius: 50%;
+    z-index: 0;
+    transform: translateZ(0);
+
+    /* animation: morph 7.5s ease-in-out infinite; */
+
+}
+
+
+
+
+
+/* Background overlay */
+
+.background-overlay {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.595);
+}
+
+
+
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #c2c2c200; 
+
+}
+::-webkit-scrollbar-thumb {
+    background: rgb(77, 77, 77); 
+    border-radius: 10px;
+}
+
+
+
+
+
+@keyframes morph {
+	0% {
+		border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+		background-size: 100% 100%;
+	}
+
+	50% {
+		border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+		background-size: 300% 150%;
+	}
+
+	100% {
+		border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+		background-size: 100% 100%;
+	}
+}
+
+
+
+

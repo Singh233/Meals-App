@@ -197,7 +197,7 @@ function showFavorites() {
     if (arr.length == 0) {
         div += `
         <div class="no-favorites animate__animated animate__fadeIn">
-            <p><i class="fa-solid fa-face-frown"></i> No favorites added yet</p>
+            <p><i class="fa-solid fa-face-frown"></i> No favorites to show!</p>
         </div>
         `;
         favoritesContainer.innerHTML = div;
@@ -410,34 +410,55 @@ function showInstructions(meal) {
 
 
 
+let isChanged = false;
 
 
 
 const handleScroll = event => {
     const searchBar = document.getElementById('search-bar1');
-    const navBar = document.getElementsByClassName(`nav-bar`)[0];
+    const dummySearchBar = document.getElementById('dummy-space');
 
-    if (window.scrollY <= 5) {
 
-        navBar.classList.remove('navbar-scroll-effect');
 
-        // cardsContainer.classList.add('');
+    if (window.scrollY >= 0 && window.scrollY <= 199) {
 
-        searchBar.classList.add('animate__fadeIn');
-        searchBar.classList.remove('animate__fadeOut');
+        if (searchBar.classList.contains('search-bar2')) {
+            searchBar.classList.add('animate__fadeOut');
+            searchBar.classList.remove('animate__fadeIn');
+
+            setTimeout(() => {
+                searchBar.classList.remove('search-bar2');
+                searchBar.classList.add('animate__fadeIn');
+                searchBar.classList.remove('animate__fadeOut');
+                dummySearchBar.classList.add('hide');
+
+            }, 500);
+
+            isChanged = false;
+        }
+
+    } else if (window.scrollY > 200) {
+        if (!isChanged) {
+            searchBar.classList.add('animate__fadeOut');
+            searchBar.classList.remove('animate__fadeIn');
+
+            setTimeout(() => {
+                searchBar.classList.add('search-bar2');
+                searchBar.classList.add('animate__fadeIn');
+                searchBar.classList.remove('animate__fadeOut');
+                dummySearchBar.classList.remove('hide');
+
+            }, 500);
+
+
+            isChanged = true;
+        }
         
-    } else if (window.scrollY > 50) {
 
-        
-        navBar.classList.add('navbar-scroll-effect');
-
-
-        searchBar.classList.add('animate__fadeOut');
-        searchBar.classList.remove('animate__fadeIn');
 
 
         
-    }
+    } 
     
 };
 
