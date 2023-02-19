@@ -25,10 +25,191 @@ function getList() {
         const cardsContainer = document.getElementById('cards-container');
         mainContainer.classList.remove('center-main');
         cardsContainer.innerHTML='';
+        let count = 0;
+
         data.meals.forEach((meal) => {
+
             const card = document.createElement('div');
+
+            const isFavorite = checkIfFavourite(meal.idMeal);
+
             card.innerHTML = `
-                <div class="card">
+                <div class="card animate__animated animate__fadeIn">
+                    <div class="card-img">
+                        <img src="${meal.strMealThumb}" alt="">
+                    </div>
+
+                    <div class="card-header">
+                        <p>${meal.strMeal.length}</p>
+                        <p class="slash">/</p>
+                        <p>${meal.strCategory}</p>
+                    </div>
+
+                    <div class="shape"></div>
+
+                    <div class="card-info">
+                        <p class="area"><i class="fa-solid fa-earth-americas"></i> ${meal.strArea}</p>
+                        <p class="tags"><i class="fa-solid fa-tags"></i> ${meal.strTags}</p>
+                    </div>
+                    
+                    <div class="card-footer">
+                        <p onclick='getMealDetails(${meal.idMeal})'>See Details </p>
+                        <i id='like-${meal.idMeal}' onclick="addRemoveFavourites(${meal.idMeal}, 'cardDetail')" class="${isFavorite ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+                        
+                    </div>
+                </div>
+            `;
+            setTimeout(() => {
+                cardsContainer.appendChild(card);
+            }, count);
+            count += 200;
+        });
+    });
+}
+
+
+
+
+// function to display meal details
+function getMealDetails(mealId) {
+
+    // add background overlay
+    const overlay = document.getElementsByClassName('background-overlay')[0];
+    overlay.classList.remove('remove');
+
+    overlay.classList.remove('animate__fadeOut');
+    overlay.classList.add('animate__fadeIn');
+
+
+    const url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=";
+    const bodyContainer = document.querySelector('body');
+    console.log(mealId);
+    fetchMealFromApi(url, mealId)
+    .then((data) => {
+        let meal = data.meals[0];
+
+        const isFavorite = checkIfFavourite(meal.idMeal);
+
+        console.log(meal)
+        const card = document.createElement('div');
+            card.innerHTML = `
+                <div class="meal-details animate__animated animate__faster animate__fadeIn">
+                        <i onclick="closeMealDetails()" class="fa-solid fa-xmark close-button"></i>
+
+                        <div class="meal-img">
+                            <img src="${meal.strMealThumb}" alt="">
+                        </div>
+                    <div class="wrapper">
+                        
+                
+                        <div class="meal-header">
+                            <p>${meal.strMeal}</p>
+                            <p class="slash">/</p>
+                            <p>${meal.strCategory}</p>
+                        </div>
+                
+                        <div class="meal-info">
+                            <p class="area"><i class="fa-solid fa-earth-americas"></i> ${meal.strArea}</p>
+                            <p class="tags"><i class="fa-solid fa-tags"></i> ${meal.strTags}</p>
+                        </div>
+                
+                        <div class="meal-info-nav">
+                            <p onclick='showIngredients()' class='ingredients'>Ingredients</p>
+                            <p onclick='showInstructions()' class='recipe active'>Recipe</p>
+                        </div>
+                
+                        <div class="ingredients-list hide">
+                            <p>${meal.strIngredient1}</p>
+                            <p>${meal.strIngredient2}</p>
+                            <p>${meal.strIngredient3}</p>
+                            <p>${meal.strIngredient4}</p>
+                            <p>${meal.strIngredient5}</p>
+                        </div>
+                
+                        <div class="recipe-info ">
+                            <p>${meal.strInstructions}</p>
+                            
+                        </div>
+                        
+                        
+                    </div>
+                    <div class="meal-footer">
+                        <a href='${meal.strYoutube}' target="_blank"><i class="fa-brands fa-youtube"></i> Watch on Youtube</a>
+                        <i id='like-details-${meal.idMeal}' onclick="addRemoveFavourites(${meal.idMeal}, 'mealDetails')" class="${isFavorite ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+                        
+                    </div>
+                    
+                </div>
+            `;
+        bodyContainer.appendChild(card);
+    });
+
+}
+
+// function to close meal details 
+function closeMealDetails() {
+    const overlay = document.getElementsByClassName('background-overlay')[0];
+    const mealDetails = document.getElementsByClassName('meal-details')[0];
+
+    mealDetails.classList.remove('animate__fadeIn');
+    mealDetails.classList.add('animate__fadeOut');
+
+    overlay.classList.remove('animate__fadeIn');
+    overlay.classList.add('animate__fadeOut');
+
+    setTimeout(() => {
+        mealDetails.remove();
+        overlay.classList.add('remove');
+    }, 700);
+
+
+}
+
+
+
+
+
+// function to show favorites list
+function showFavorites() {
+    const favoritesContainer = document.getElementsByClassName('favorites-container')[0];
+    favoritesContainer.classList.remove('remove');
+    favoritesContainer.classList.remove('animate__fadeOut');
+    favoritesContainer.classList.add('animate__fadeIn');
+
+    // add background overlay
+    const overlay = document.getElementsByClassName('background-overlay')[0];
+    overlay.classList.remove('remove');
+
+    overlay.classList.remove('animate__fadeOut');
+    overlay.classList.add('animate__fadeIn');
+
+    // get the array from local storage
+    const arr = JSON.parse(localStorage.getItem("favouritesList"));
+    const url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=";
+    let div = '';
+    div += `
+    <i onclick="hideFavorites()" class="fa-solid fa-xmark close-button"></i>
+    <div class="favorites-header">
+        <p> <i class="fa-solid fa-heart"></i> Favorites</p>
+    </div>
+    `;
+
+    if (arr.length == 0) {
+        div += `
+        <div class="no-favorites animate__animated animate__fadeIn">
+            <p><i class="fa-solid fa-face-frown"></i> No favorites added yet</p>
+        </div>
+        `;
+        favoritesContainer.innerHTML = div;
+
+    } else {
+        arr.forEach((mealId) => {
+            fetchMealFromApi(url, mealId)
+            .then((data) => {
+                let meal = data.meals[0];
+                
+                div += `
+                <div class="card animate__animated animate__fadeIn">
                     <div class="card-img">
                         <!-- <div class="shape"></div> -->
                         <img src="${meal.strMealThumb}" alt="">
@@ -49,78 +230,183 @@ function getList() {
                     
                     <div class="card-footer">
                         <p onclick='getMealDetails(${meal.idMeal})'>See Details </p>
-                        <i class="fa-regular fa-heart"></i>
+                        <i id='like-${meal.idMeal}' onclick="addRemoveFavourites(${meal.idMeal}, 'favorites')" class="fa-solid fa-heart animate__animated"></i>
                         
                     </div>
                 </div>
-            `;
-            
-            cardsContainer.appendChild(card);
+                `;
+
+                favoritesContainer.innerHTML = div;
+
+            });
+
         });
-    });
+    }
+
+}
+
+// function to hide favorites list
+function hideFavorites() {
+    const favoritesContainer = document.getElementsByClassName('favorites-container')[0];
+    // add background overlay
+    const overlay = document.getElementsByClassName('background-overlay')[0];
+
+    favoritesContainer.classList.add('animate__fadeOut');
+    favoritesContainer.classList.remove('animate__fadeIn');
+
+    overlay.classList.add('animate__fadeOut');
+    overlay.classList.remove('animate__fadeIn');
+
+
+
+
+
+    setTimeout(() => {
+        favoritesContainer.classList.add('remove');
+        overlay.classList.add('remove');
+
+    }, 700);
+    
 }
 
 
 
 
-// function to display meal details
-function getMealDetails(mealId) {
-    const url = "https://www.themealdb.com/api/json/v1/1/lookup.php?i=";
-    const bodyContainer = document.querySelector('body');
-    console.log(mealId);
-    fetchMealFromApi(url, mealId)
-    .then((data) => {
-        let meal = data.meals[0];
-        console.log(meal)
-        const card = document.createElement('div');
-            card.innerHTML = `
-                <div class="meal-details animate__animated animate__zoomIn">
-                        <div class="meal-img">
-                            <img src="${meal.strMealThumb}" alt="">
-                        </div>
-                    <div class="wrapper">
-                        
-                
-                        <div class="meal-header">
-                            <p>${meal.strMeal}</p>
-                            <p class="slash">/</p>
-                            <p>${meal.strCategory}</p>
-                        </div>
-                
-                        
-                
-                        <div class="meal-info-nav">
-                            <p>Ingredients</p>
-                            <p>Recipe</p>
-                        </div>
-                
-                        <div class="ingredients-list hide">
-                            <p>${meal.strIngredient1}</p>
-                            <p>${meal.strIngredient2}</p>
-                            <p>${meal.strIngredient3}</p>
-                            <p>${meal.strIngredient4}</p>
-                            <p>${meal.strIngredient5}</p>
-                        </div>
-                
-                        <div class="recipe-info ">
-                            <p>${meal.strInstructions}</p>
-                            
-                        </div>
-                        
-                        
-                    </div>
-                    <div class="meal-footer">
-                        <p><i class="fa-brands fa-youtube"></i> Watch on Youtube</p>
-                        <i class="fa-regular fa-heart"></i>
-                        
-                    </div>
-                    
-                </div>
-            `;
-        bodyContainer.appendChild(card);
-    });
+
+
+
+// function to add or remove from favorites array
+function addRemoveFavourites(mealId, from) {
+    // get the array from local storage
+    const arr = JSON.parse(localStorage.getItem("favouritesList"));
+    let isRemoved = false;
+
+    // check if the array is empty
+    if (arr.length == 0) {
+        // add the meal id to the array
+        arr.push(mealId);
+    } else {
+        // check if the meal id is already in the array
+        if (arr.includes(mealId)) {
+            // remove the meal id from the array
+            arr.splice(arr.indexOf(mealId), 1);
+            isRemoved = true;
+        } else {
+            // add the meal id to the array
+            arr.push(mealId);
+        }
+    }
+
+    // save the array to local storage
+    localStorage.setItem("favouritesList", JSON.stringify(arr));
+
+console.log(from)
+console.log(mealId)
+    // change the like icon of the cards list
+    const heartIcon = document.getElementById(`like-${mealId}`);
+    if (heartIcon.classList.contains('fa-regular')) {
+        heartIcon.classList.remove('fa-regular');
+        heartIcon.classList.add('fa-solid');
+
+        // animate the like icon
+        heartIcon.classList.remove('animate__bounceIn');
+        setTimeout(() => {
+            heartIcon.classList.add('animate__bounceIn');
+        }, 1);
+    } else {
+        heartIcon.classList.remove('fa-solid');
+        heartIcon.classList.add('fa-regular');
+
+        // animate the like icon
+        heartIcon.classList.remove('animate__bounceIn');
+        setTimeout(() => {
+            heartIcon.classList.add('animate__bounceIn');
+        }, 1);    
+    }
+
+    // change the like icon of the details page 
+    if (from == 'mealDetails') {
+        const heartIconDetails = document.getElementById(`like-details-${mealId}`);
+        if (heartIconDetails.classList.contains('fa-regular')) {
+            heartIconDetails.classList.remove('fa-regular');
+            heartIconDetails.classList.add('fa-solid');
+
+            // animate the like icon
+            heartIconDetails.classList.remove('animate__bounceIn');
+            setTimeout(() => {
+                heartIconDetails.classList.add('animate__bounceIn');
+            }, 1);
+        } else {
+            heartIconDetails.classList.remove('fa-solid');
+            heartIconDetails.classList.add('fa-regular');
+
+            // animate the like icon
+            heartIconDetails.classList.remove('animate__bounceIn');
+            setTimeout(() => {
+                heartIconDetails.classList.add('animate__bounceIn');
+            }, 1);    
+        }
+    }
+    
+
+
+    const favoritesContainer = document.getElementsByClassName('favorites-container')[0];
+    ;
+    if (!favoritesContainer.classList.contains('remove') && isRemoved) {
+        showFavorites();
+    }
+}
+
+
+
+
+// function to check if the meal is in the favorites array
+function checkIfFavourite(mealId) {
+    // get the array from local storage
+    const arr = JSON.parse(localStorage.getItem("favouritesList"));
+    console.log(arr, parseInt(mealId));
+    if (arr.includes(parseInt(mealId))) {
+        return true;
+    }
+    return false;
+}
+
+
+
+// show ingredients
+function showIngredients(meal) {
+    const ingredientsInfo = document.getElementsByClassName('ingredients-list')[0];
+    const recipeInfo = document.getElementsByClassName('recipe-info')[0];
+    const ingredientsButton = document.getElementsByClassName('ingredients')[0];
+    const recipeButton = document.getElementsByClassName('recipe')[0];
+
+
+    recipeInfo.classList.add('hide');
+    ingredientsInfo.classList.remove('hide');
+
+    ingredientsButton.classList.add('active');
+    recipeButton.classList.remove('active');
+
 
 }
+
+// show instructions 
+function showInstructions(meal) {
+    const ingredientsInfo = document.getElementsByClassName('ingredients-list')[0];
+    const recipeInfo = document.getElementsByClassName('recipe-info')[0];
+
+    const ingredientsButton = document.getElementsByClassName('ingredients')[0];
+    const recipeButton = document.getElementsByClassName('recipe')[0];
+
+    recipeInfo.classList.remove('hide');
+    ingredientsInfo.classList.add('hide');
+
+
+    ingredientsButton.classList.remove('active');
+    recipeButton.classList.add('active');
+
+}
+
 
 
 
@@ -132,8 +418,6 @@ const handleScroll = event => {
     const navBar = document.getElementsByClassName(`nav-bar`)[0];
 
     if (window.scrollY <= 5) {
-
-        
 
         navBar.classList.remove('navbar-scroll-effect');
 

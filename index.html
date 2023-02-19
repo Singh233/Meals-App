@@ -37,6 +37,10 @@
         
     </div>
 
+    <div class="background-overlay animate__animated animate__faster  remove">
+
+    </div>
+
 
     <!-- Navigation Bar -->
     <header class="nav-bar animate__animated">
@@ -46,7 +50,7 @@
 
         <div class="menu">
             <p class="active">Search</p>
-            <p>Favorites</p>
+            <p onclick="showFavorites()">Favorites</p>
             <p>About Us</p>
         </div>
 
@@ -77,30 +81,7 @@
         <!-- Show search results -->
         <div id="cards-container" class="animate__animated meal-cards">
 
-            <!-- <div class="card">
-                <div class="card-img">
-                    <img src="https://www.themealdb.com/images/media/meals/qtqwwu1511792650.jpg" alt="">
-                </div>
-
-                <div class="card-header">
-                    <p>Applie Pie</p>
-                    <p class="slash">/</p>
-                    <p>Dessert</p>
-                </div>
-
-                <div class="shape"></div>
-
-                <div class="card-info">
-                    <p class="area"><i class="fa-solid fa-earth-americas"></i> British</p>
-                    <p class="tags"><i class="fa-solid fa-tags"></i> Tart, Baking, Fruity</p>
-                </div>
-                
-                <div class="card-footer">
-                    <p>See Details </p>
-                    <i class="fa-regular fa-heart"></i>
-                    
-                </div>
-            </div> -->
+            <!-- Cards List -->
 
             
         </div>
@@ -111,58 +92,14 @@
     </footer>
 
 
-
-
-
     <!-- Display Meal Details -->
-    <!-- <div class="meal-details">
-        <div class="meal-img">
-            <img src="https://www.themealdb.com/images/media/meals/qtqwwu1511792650.jpg" alt="">
-        </div>
 
-        <div class="meal-header">
-            <p>Applie Pie</p>
-            <p class="slash">/</p>
-            <p>Dessert</p>
-        </div>
 
-        <div class="meal-details-bg"></div>
-
-        <div class="meal-info-nav">
-            <p>Ingredients</p>
-            <p>Recipe</p>
-        </div>
-
-        <div class="ingredients-list">
-            <ul>
-                <li>1/2 cup unsalted butter</li>
-                <li>3 tablespoons all-purpose flour</li>
-                <li>1/4 cup water</li>
-                <li>3 tablespoons all-purpose flour</li>
-                <li>1/4 cup water</li>
-                <li>1/2 cup white sugar</li>
-                <li>1/2 cup packed brown sugar</li>
-                <li>8 Granny Smith apples - peeled, cored and sliced</li>
-            </ul>
-        </div>
-
-        <div class="recipe-info hide">
-            <p>1. Preheat oven to 425 degrees F (220 degrees C). Melt the butter in a saucepan. Stir in
-                flour to form a paste. Add water, white sugar and brown sugar, and bring to a boil. Reduce
-                temperature and let simmer.</p>
-            <p>2. Place the bottom crust in your pan. Fill with apples, mounded slightly. Cover with a
-                lattice work crust. Gently pour the sugar and butter liquid over the crust. Pour slowly so
-                that it does not run off.</p>
-            <p>3. Bake 15 minutes in the preheated oven. Reduce the temperature to 350 degrees F (175
-                degrees C). Continue baking for 35 to 45 minutes, until apples are soft.</p>
-        </div>
+    <div class="favorites-container animate__animated animate__faster remove">
         
-        <div class="meal-footer">
-            <p><i class="fa-brands fa-youtube"></i> Watch on Youtube</p>
-            <i class="fa-regular fa-heart"></i>
-            
-        </div>
-    </div> -->
+        <!-- Cards list -->
+
+    </div>
 
 
     <script src="script.js"></script>

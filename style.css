@@ -133,7 +133,7 @@ body {
 
 .search-bar i {
     position: relative;
-    z-index: 999;
+    z-index: 1;
     margin-right: -40px;
     font-size: 1.5rem;
     
@@ -166,7 +166,7 @@ body {
 
 .search-bar button {
     position: relative;
-    z-index: 999;
+    z-index: 1;
     padding: 20px 20px;
     background-color: rgba(255, 37, 37, 0.503);
     backdrop-filter: blur(12px);
@@ -186,7 +186,7 @@ body {
 .search-bar2 {
     position: fixed;
     bottom: 0;
-    z-index: 999;
+    z-index: 20;
 
 }
 
@@ -226,7 +226,7 @@ body {
 }
 
 .meal-cards .card:hover {
-    transform: scale(1.02);
+    transform: scale(1.01);
 }
 
 
@@ -358,7 +358,7 @@ body {
     top: 50%;  
     left: 50%; 
     transform: translate(-50%, -50%);
-    z-index: 1;
+    z-index: 3;
 
     display: flex;
     height: 90vh;
@@ -366,17 +366,25 @@ body {
     border-radius: 50px;
     margin: 10px;
     margin-bottom: 20px;
-    background-color: rgba(0, 0, 0, 0.375);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    background-color: rgb(0, 0, 0);
+
 
     border: 1px solid rgba(187, 187, 187, 0.187);
     transition: 0.3s all ease-in-out;
 }
 
+.meal-details .close-button {
+    position: fixed;
+    right: 25px;
+    top: 25px;
+    font-size: 1.5rem;
+    z-index: 5;
+}
+
 .meal-details .wrapper {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .meal-details .meal-img {
@@ -450,32 +458,76 @@ body {
     position: relative;
 }
 
+.meal-details .meal-info {
+    align-self: center;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
 
+.meal-details .meal-info p {
+    margin: 5px;
+}
 .meal-details .meal-info-nav {
     align-self: center;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    width: 20%;
     margin-bottom: 10px;
     margin-top: 0px;
+    padding: 15px;
+
+    
 }
 
 .meal-details .meal-info-nav p {
-    margin: 5px;
     font-size: 1.3rem;
+}
+
+.meal-details .meal-info-nav .ingredients, .meal-info-nav .recipe {
+    padding: 15px;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.121);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(187, 187, 187, 0.187);
+    cursor: pointer;
+    transition: 0.2s all ease-out;
+}
+
+.meal-details .meal-info-nav .ingredients {
+    border-radius: 20px 0 0 20px;
+    border-right: none;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.meal-details .meal-info-nav .recipe {
+    border-radius: 0 20px 20px 0;
+    padding: 15px 30px;
+}
+
+
+.meal-details .meal-info-nav .ingredients:hover, .meal-info-nav .recipe:hover {
+    background-color: rgba(0, 0, 0, 0.121);
+}
+
+.meal-details .active {
+    background-color: rgba(0, 0, 0, 0.121) !important;
+
 }
 
 
 .meal-details .ingredients-list {
     align-self: center;
     text-align: center;
+
 }
 
 .meal-details .recipe-info {
     align-self: center;
     text-align: center;
-    width: 50%;
+    width: 70%;
 }
 
 .meal-details .meal-footer {
@@ -490,7 +542,203 @@ body {
 
 }
 
-.meal-details .meal-footer p, .meal-footer>i {
+.meal-details .meal-footer a, .meal-footer>i {
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.121);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(187, 187, 187, 0.187);
+    cursor: pointer;
+    transition: 0.2s all ease-out;
+    text-decoration: none;
+    color: white;
+    margin-bottom: 15px;
+
+}
+
+.meal-details .meal-footer a {
+    padding: 18px;
+}
+
+.meal-details .meal-footer a:hover, .meal-footer i:hover {
+    
+    background-color: rgba(250, 250, 250, 0.121);
+    
+}
+
+.meal-details .meal-footer>i {
+    padding: 18px;
+}
+
+.meal-details .meal-footer i {
+    font-size: 1.2rem;
+}
+
+
+
+
+
+
+
+
+
+
+/* Design Favorites list */
+
+
+.favorites-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 20px;
+    margin-top: 40px;
+    transition: all 0.4s ease-in-out;
+
+    height: 90vh;
+    width: 80vw;
+    border-radius: 50px;
+    margin: 10px;
+    margin-bottom: 20px;
+    background-color: rgb(0, 0, 0);
+
+
+    border: 1px solid rgba(187, 187, 187, 0.187);
+
+    position: fixed;
+    top: 50%;  
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+
+    overflow-y: scroll;
+    padding-top: 75px;
+}
+
+.favorites-container::-webkit-scrollbar {
+    display: none;
+}
+
+.favorites-container .no-favorites {
+    font-size: 3rem;
+}
+
+.favorites-container .close-button {
+    position: fixed;
+    right: 25px;
+    top: 25px;
+    font-size: 1.5rem;
+}
+
+.favorites-container .favorites-header {
+    position: fixed;
+    left: 50%;
+    top: 40px;
+    font-size: 2rem;
+    font-weight: 600;
+    transform: translate(-50%, -50%);
+
+}
+
+.favorites-container .card {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    width: 350px;
+    border-radius: 30px;
+    margin: 10px;
+    margin-bottom: 20px;
+    background-color: rgba(0, 0, 0, 0.375);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    border: 1px solid rgba(187, 187, 187, 0.187);
+    transition: 0.3s all ease-in-out;
+}
+
+.favorites-container .card:hover {
+    transform: scale(1.01);
+}
+
+
+.favorites-container .card .card-img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.favorites-container .card .card-img img {
+    
+    width: 100%;
+    /* margin-top: -290px; */
+    border-radius: 30px;
+    mask-image: linear-gradient(to top, rgba(0,0,0,0) 0%,rgb(0, 0, 0) 100%);
+    -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0) 0%,rgb(0, 0, 0) 100%);
+
+    
+}
+
+
+.favorites-container .card .card-header {
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+    margin-top: -150px;
+    z-index: 1;
+
+
+    /* background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%); */
+}
+
+.favorites-container .card .card-header p {
+    padding: 5px;
+    border-radius: 20px;
+    font-size: 1.7rem;
+    font-weight: 600;
+
+    /* background-color: rgba(0, 0, 0, 0.121);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(187, 187, 187, 0.187); */
+
+}
+
+.favorites-container .card .card-header .slash {
+    font-size: 3rem;
+    margin: 0px;
+}
+
+
+
+
+.favorites-container .card .card-info {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.favorites-container .card .card-info p {
+    margin: 5px;
+}
+
+
+.favorites-container .card .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    /* background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%); */
+
+}
+
+.favorites-container .card .card-footer p, .card-footer i {
     padding: 20px;
     border-radius: 20px;
     background-color: rgba(0, 0, 0, 0.121);
@@ -501,13 +749,12 @@ body {
     transition: 0.2s all ease-out;
 }
 
-.meal-details .meal-footer p:hover, .meal-footer i:hover {
-    
+.favorites-container .card .card-footer p:hover, .card-footer i:hover {
     background-color: rgba(250, 250, 250, 0.121);
     
 }
 
-.meal-details .meal-footer i {
+.favorites-container .card .card-footer i {
     font-size: 1.2rem;
     padding: 18px;
 }
@@ -518,6 +765,9 @@ body {
 
 
 
+.remove {
+    display: none;
+}
 
 
 
@@ -641,6 +891,17 @@ body {
 
 
 
+
+
+/* Background overlay */
+
+.background-overlay {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.595);
+}
 
 
 
