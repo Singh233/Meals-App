@@ -14,14 +14,26 @@ async function fetchMealFromApi(url,value) {
 // function to show toast
 function showToast(message) {
 
+    // get screen width
+    let screenWidth = window.screen.availWidth;
+
+    // set toast position
+    let gravity = 'bottom';
+    let position = 'right';
+    if (screenWidth < 768) {
+        gravity = 'top';
+        position = 'center';
+    }
+
+    // show toast
     Toastify({
         text: message,
         duration: 3000,
         destination: "",
         newWindow: true,
         close: true,
-        gravity: "bottom", // `top` or `bottom`
-        position: "right", // `left`, `center` or `right`
+        gravity: gravity, // `top` or `bottom`
+        position: position, // `left`, `center` or `right`
         stopOnFocus: true, // Prevents dismissing of toast on hover
         style: {
             background: 'rgba(0, 0, 0, 0.375)',

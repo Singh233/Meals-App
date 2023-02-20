@@ -146,3 +146,55 @@
     padding: 18px;
 }
 
+
+
+
+
+
+
+@media screen and (max-width: 935px) {
+
+    .meal-cards {
+        width: 85vw;
+    }
+    
+    
+}
+
+
+@media screen and (max-width: 880px) {
+
+    .meal-cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+
+        width: 100vw;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+}
+
+
+@media screen and (max-width: 740px) {
+    .meal-cards .card {
+        width: 320px;
+
+    }
+
+    .meal-cards {
+        /* grid-template-columns: 1fr; */
+        justify-items: center;
+    }
+
+}
+
+@media screen and (max-width: 680px) {
+
+    .meal-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
