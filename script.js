@@ -119,11 +119,31 @@ function getMealDetails(mealId) {
                         </div>
                 
                         <div class="ingredients-list hide">
-                            <p>${meal.strIngredient1}</p>
-                            <p>${meal.strIngredient2}</p>
-                            <p>${meal.strIngredient3}</p>
-                            <p>${meal.strIngredient4}</p>
-                            <p>${meal.strIngredient5}</p>
+                            <div class='ingredient'>
+                                <img src='https://www.themealdb.com/images/ingredients/${meal.strIngredient1}-small.png' />
+                                <p>${meal.strIngredient1}</p>
+                            </div>
+
+                            <div class='ingredient'>
+                                <img src='https://www.themealdb.com/images/ingredients/${meal.strIngredient2}-small.png' />
+                                <p>${meal.strIngredient2}</p>
+                            </div>
+
+                            <div class='ingredient'>
+                                <img src='https://www.themealdb.com/images/ingredients/${meal.strIngredient3}-small.png' />
+                                <p>${meal.strIngredient3}</p>
+                            </div>
+
+                            <div class='ingredient'>
+                                <img src='https://www.themealdb.com/images/ingredients/${meal.strIngredient4}-small.png' />
+                                <p>${meal.strIngredient4}</p>
+                            </div>
+
+                            <div class='ingredient'>
+                                <img src='https://www.themealdb.com/images/ingredients/${meal.strIngredient5}-small.png' />
+                                <p>${meal.strIngredient5}</p>
+                            </div>
+                            
                         </div>
                 
                         <div class="recipe-info ">
