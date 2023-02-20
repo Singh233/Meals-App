@@ -11,6 +11,31 @@ async function fetchMealFromApi(url,value) {
     return meal;
 }
 
+// function to show toast
+function showToast(message) {
+
+    Toastify({
+        text: message,
+        duration: 3000,
+        destination: "",
+        newWindow: true,
+        close: true,
+        gravity: "bottom", // `top` or `bottom`
+        position: "right", // `left`, `center` or `right`
+        stopOnFocus: true, // Prevents dismissing of toast on hover
+        style: {
+            background: 'rgba(0, 0, 0, 0.375)',
+            backdropFilter: 'blur(8px)',
+            border: '1px solid rgba(187, 187, 187, 0.187)',
+            borderRadius: '10px',
+        },
+        offset: {
+            x: 20, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
+            y: 20 // vertical axis - can be a number or a string indicating unity. eg: '2em'
+        },
+        onClick: function(){} // Callback after click
+    }).showToast();
+}
 
 
 
@@ -307,15 +332,21 @@ function addRemoveFavourites(mealId, from) {
     if (arr.length == 0) {
         // add the meal id to the array
         arr.push(mealId);
+        showToast('Added to favorites');
+
     } else {
         // check if the meal id is already in the array
         if (arr.includes(mealId)) {
             // remove the meal id from the array
             arr.splice(arr.indexOf(mealId), 1);
             isRemoved = true;
+            showToast('Removed from favorites');
+
         } else {
             // add the meal id to the array
             arr.push(mealId);
+            showToast('Added to favorites');
+
         }
     }
 
@@ -358,6 +389,8 @@ console.log(mealId)
             setTimeout(() => {
                 heartIconDetails.classList.add('animate__bounceIn');
             }, 1);
+
+
         } else {
             heartIconDetails.classList.remove('fa-solid');
             heartIconDetails.classList.add('fa-regular');
@@ -366,7 +399,8 @@ console.log(mealId)
             heartIconDetails.classList.remove('animate__bounceIn');
             setTimeout(() => {
                 heartIconDetails.classList.add('animate__bounceIn');
-            }, 1);    
+            }, 1); 
+            
         }
     }
     
@@ -377,6 +411,7 @@ console.log(mealId)
     if (!favoritesContainer.classList.contains('remove') && isRemoved) {
         showFavorites();
     }
+
 }
 
 
