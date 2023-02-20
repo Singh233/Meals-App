@@ -81,3 +81,84 @@
 .hide {
     display: none;
 }
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 800px) {
+
+    
+
+
+    .search-bar i {
+        font-size: 1.3rem;
+    }
+
+    .search-bar input {
+        width: 50vw;
+        font-size: 1.3rem;
+    }
+
+    .search-bar input:hover {
+        width: 55vw;
+    }
+
+    .search-bar button {
+        font-size: 1.3rem;
+    }
+
+    
+}
+
+
+@media screen and (max-width: 490px) {
+
+    .search-bar i {
+        font-size: 1.1rem;
+    }
+
+    .search-bar input {
+        width: 50vw;
+        font-size: 1.1rem;
+    }
+
+    .search-bar input:hover {
+        width: 55vw;
+    }
+
+    .search-bar button {
+        font-size: 1.1rem;
+    }
+
+
+}
+
+
+
+@media screen and (max-width: 425px) {
+    .search-bar i {
+        font-size: 1rem;
+    }
+
+    .search-bar input {
+        width: 50vw;
+        font-size: 1rem;
+    }
+
+    .search-bar input:hover {
+        width: 55vw;
+    }
+
+    .search-bar button {
+        font-size: 1rem;
+    }
+
+
+}
+
+

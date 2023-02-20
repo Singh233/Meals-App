@@ -40,6 +40,8 @@ body {
     margin: 0;
     color: #EBF5CB;
     font-size: 1.3rem;
+    text-align: center;
+
 
 }
 
@@ -48,6 +50,8 @@ body {
     margin: 0;
     margin-bottom: 40px;
     color: #BDE986;
+    text-align: center;
+
 }
 
 
@@ -273,5 +277,76 @@ body {
 }
 
 
+
+
+
+
+
+@media screen and (max-width: 800px) {
+
+    /* Main container */
+
+    .main-container .slogan p {
+        font-size: 1.1rem;
+
+    }
+
+    .main-container .slogan h1 {
+        font-size: 4rem;
+    }
+
+
+    /* css to center main-container when there is search result */
+    .center-main {
+        justify-content: center;
+    }
+
+    .footer {
+        display: none;
+    }
+    
+    
+}
+
+
+@media screen and (max-width: 600px) {
+
+    .main-container .slogan p {
+        margin: 0;
+        color: #EBF5CB;
+        font-size: 1rem;
+
+    }
+    .main-container .slogan h1 {
+        font-size: 3.5rem;
+    }
+
+}
+
+
+@media screen and (max-width: 490px) {
+
+    .main-container .slogan p {
+        font-size: 1rem;
+    }
+    .main-container .slogan h1 {
+        font-size: 3.3rem;
+    }
+
+}
+
+
+
+@media screen and (max-width: 425px) {
+
+    .main-container .slogan p {
+        font-size: 1rem;
+
+    }
+    .main-container .slogan h1 {
+        font-size: 3rem;
+    }
+
+}
 
 
