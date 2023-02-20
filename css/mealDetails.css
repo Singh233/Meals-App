@@ -169,6 +169,8 @@
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
     text-align: center;
+    overflow-y: scroll;
+    height: 50%;
 }
 
 /* .meal-details .ingredients-list img {
@@ -191,6 +193,9 @@
     align-self: center;
     text-align: center;
     width: 70%;
+    height: 40%;
+    overflow-y: scroll;
+
 }
 
 .meal-details .meal-footer {
@@ -240,3 +245,105 @@
 .hide {
     display: none !important;
 }
+
+
+
+
+
+
+
+
+@media screen and (max-width: 935px) {
+
+    .meal-details {
+        width: 85vw;
+    }
+    
+    
+}
+
+
+@media screen and (max-width: 880px) {
+
+    .meal-details {
+
+        width: 95vw;
+
+    }
+
+}
+
+
+@media screen and (max-width: 768px) {
+
+    .meal-details {
+        flex-direction: column;
+    }
+
+    .meal-details .meal-img img {
+        height: 200px;
+        width: 100%;
+        -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0) 0%,rgb(0, 0, 0) 100%);
+    }
+
+    .meal-details .meal-header {
+        flex-direction: column;
+        margin-top: -100px;
+        margin-bottom: 10px;
+    }
+
+    .meal-details .meal-header p {
+        margin: 0;
+    }
+
+    .meal-details .meal-header .slash {
+        display: none;
+    }
+
+    .meal-details .ingredients-list {
+        
+        height: 50%;
+        width: 90%;
+    }
+
+    .meal-details .ingredients-list .ingredient {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #12171C;
+        border-radius: 20px;
+        padding: 10px;
+        padding-bottom: 0px;
+    }
+    
+}
+
+
+
+@media screen and (max-width: 550px) {
+
+    .meal-details .ingredients-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: center;
+        height: 36%;
+    }
+    
+}
+
+
+
+
+@media screen and (max-width: 425px) {
+
+    .meal-details .recipe-info {
+
+        width: 70%;
+        height: 30%;
+    
+    }
+    
+}
+
+

@@ -36,6 +36,7 @@
 
 .favorites-container .no-favorites {
     font-size: 3rem;
+    text-align: center;
 }
 
 .favorites-container .close-button {
@@ -181,7 +182,7 @@
 
 
 .remove {
-    display: none;
+    display: none !important;
 }
 
 
@@ -198,3 +199,59 @@
     margin-bottom: 10px;
     position: relative;
 }
+
+
+
+
+
+
+@media screen and (max-width: 935px) {
+
+    .favorites-container {
+        width: 85vw;
+    }
+    
+    
+}
+
+
+@media screen and (max-width: 880px) {
+
+    .favorites-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-items: center;
+        width: 95vw;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .favorites-container .no-favorites {
+        font-size: 2rem;
+        width: 100vw;
+    }
+
+}
+
+
+@media screen and (max-width: 750px) {
+    .favorites-container .card {
+        width: 300px;
+
+    }
+
+    .favorites-container {
+        /* grid-template-columns: 1fr; */
+        justify-items: center;
+    }
+
+}
+
+@media screen and (max-width: 680px) {
+
+    .favorites-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+
