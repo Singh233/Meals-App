@@ -33,6 +33,7 @@ function showToast(message) {
             x: 20, // horizontal axis - can be a number or a string indicating unity. eg: '2em'
             y: 20 // vertical axis - can be a number or a string indicating unity. eg: '2em'
         },
+        // avatar: "./img/logo.png",
         onClick: function(){} // Callback after click
     }).showToast();
 }
@@ -464,6 +465,52 @@ function showInstructions(meal) {
 
 }
 
+
+
+
+
+
+// function to toggle menu on small devices
+function toggleMenu() {
+    const menuExpand = document.getElementsByClassName('menu-expand')[0];
+    const menuIcon = document.getElementsByClassName('menu-icon')[0];
+    
+
+    if (menuExpand.classList.contains('hide-menu')) {
+        menuExpand.classList.toggle('hide-menu');
+
+        menuExpand.classList.add('animate__slideInDown');
+        menuExpand.classList.remove('animate__slideOutUp');
+
+        menuIcon.classList.remove('animate__rotateIn');
+        menuIcon.classList.remove('animate__rotateOut');
+
+        menuIcon.classList.add('animate__rotateIn');
+
+        menuIcon.classList.remove('fa-bars');
+        menuIcon.classList.add('fa-xmark');
+
+    } else {
+        
+        menuExpand.classList.add('animate__slideOutUp');
+        menuExpand.classList.remove('animate__slideInDown');
+
+
+        menuIcon.classList.add('animate__rotateOut');
+
+
+        setTimeout(() => {
+            menuIcon.classList.remove('animate__rotateOut');
+            menuIcon.classList.remove('animate__rotateIn');
+
+
+            menuExpand.classList.toggle('hide-menu');
+            menuIcon.classList.remove('fa-xmark');
+
+        menuIcon.classList.add('fa-bars');
+        }, 500);
+    }
+}
 
 
 

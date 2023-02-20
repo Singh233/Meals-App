@@ -81,6 +81,29 @@
             
         </div>
     </header>
+
+
+    <!-- Navigation Bar Small Devices -->
+    <header class="sm-navbar navbar-scroll-effect">
+        <div class="branding">
+            <p class="brand-name"> <span>H</span>appy <span>M</span>eals</p>
+            <div class="logo">
+                <img src="./img/logo2.png" alt="">
+            </div>
+        </div>
+
+        <div onclick="toggleMenu()" class="menu">
+            <i class="fa-solid fa-bars menu-icon animate__animated animate__faster"></i>
+        </div>
+
+        <div class="menu-expand animate__animated animate__faster hide-menu">
+            <p class="active"><i class="fa-solid fa-magnifying-glass"></i> Search</p>
+            <p class="favorites-nav" onclick="showFavorites()"> <i class="fa-solid fa-heart"></i> Favorites</p>
+            <p class="about-us-nav"><i class="fa-solid fa-address-card"></i> About Us</p>
+        </div>
+
+        
+    </header>
     
 
     <!-- Main content -->

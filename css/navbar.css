@@ -1,3 +1,7 @@
+.sm-navbar {
+    display: none;
+}
+
 
 .nav-bar {
     display: flex;
@@ -122,4 +126,124 @@
 .navbar-scroll-effect {
 
     background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(4,4,4,1) 100%);
+}
+
+
+
+
+
+@media screen and (max-width: 800px) {
+
+    .nav-bar {
+        display: none;
+    }
+
+    .sm-navbar {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .sm-navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: sticky;
+        top: 0%;
+        z-index: 1;
+        color: white;
+        padding: 15px 40px;
+        transition: all 0.4s ease-out;
+        -webkit-transition: all 0.4s ease-in-out;
+    }
+    
+    .sm-navbar .branding {
+        display: flex;
+        align-items: center;
+        margin-left: 20px;
+        font-size: 2rem;
+        font-weight: 600;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+        position: relative;
+        z-index: 1;
+    }
+    
+    .sm-navbar .branding .logo img {
+        position: relative;
+        margin-left: -135px;
+        margin-top: -20px;
+        z-index: -1;
+        height: 50px;
+    }
+    
+    .sm-navbar .branding .brand-name span {
+        /* font-family: cursive; */
+        font-size: 2.2rem;
+    }
+
+    .sm-navbar .menu {
+        font-size: 1.5rem;
+        margin-right: 10px;
+    }
+
+    .sm-navbar .menu-expand {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        left: 0;
+        z-index: -1;
+        color: gray;
+        background-color: black;
+        width: 100vw;
+        padding-top: 220px;
+        font-size: 1.2rem;
+        border-radius: 0 0 20px 20px;
+    }
+    
+    
+    .sm-navbar .menu-expand .favorites-nav, .about-us-nav {
+        cursor: pointer;
+        transition: all 0.3s ease-out;
+    }
+    
+    .sm-navbar .menu-expand .favorites-nav:hover, .about-us-nav:hover {
+        color: white;
+    }
+    .sm-navbar .menu-expand .active {
+        color: white;
+        cursor: pointer;
+    }
+
+    .hide-menu {
+        display: none !important;
+    }
+    
+
+    
+    
+}
+
+
+@media screen and (max-width: 425px) {
+    .sm-navbar {
+        padding: 15px 20px;
+    }
+    
+    .sm-navbar .branding {
+        
+        font-size: 1.3rem;
+    }
+    
+    .sm-navbar .branding .logo img {
+        position: relative;
+        margin-left: -95px;
+        height: 30px;
+    }
+    
+    .sm-navbar .branding .brand-name span {
+        /* font-family: cursive; */
+        font-size: 2.2rem;
+    }
 }
