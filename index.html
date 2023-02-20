@@ -51,6 +51,9 @@
     <header class="nav-bar navbar-scroll-effect">
         <div class="branding">
             <p class="brand-name"> <span>H</span>appy <span>M</span>eals</p>
+            <div class="logo">
+                <img src="./img/logo2.png" alt="">
+            </div>
         </div>
 
         <div class="menu">
@@ -61,8 +64,15 @@
 
         <div class="profile-section">
             <i class="fa-solid fa-location-arrow"></i>
-            <i class="fa-solid fa-bowl-food"></i>
+            <a href="https://www.themealdb.com/api.php" target="_blank">
+                <i class="fa-solid fa-bowl-food api-link">
+                    <span class="tooltiptext">API&nbsp;&nbsp;link</span>
+                </i>
+            </a>
+            
             <img src="./img/profile.jpeg" alt="">
+                <!-- <span class="tooltiptext">Profile</span> -->
+            
         </div>
     </header>
     
@@ -77,7 +87,7 @@
         <!-- Search Bar -->
         <div id="search-bar1" class="search-bar animate__animated">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input id="search-input" onkeyup="getList()" type="search" placeholder="Wanna cook apple pie?">
+            <input id="search-input" onkeyup="getList()" type="search" placeholder="Search for any Recipes">
             <button>Search</button>
         </div>
 
@@ -98,9 +108,15 @@
         </div>
     </div>
 
-    <footer>
 
-    </footer>
+
+    <!-- Footer  -->
+    <a class="footer" href="https://github.com/Singh233" target="_blank">
+
+        <img src="./img/profile.jpeg" alt="">
+        <p>Proudly developed by - <span>Sanambir Singh</span></p>
+
+    </a>
 
 
     <!-- Display Meal Details -->

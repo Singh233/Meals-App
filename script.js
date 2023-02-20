@@ -40,7 +40,9 @@ function getList() {
                     </div>
 
                     <div class="card-header">
-                        <p>${meal.strMeal.length}</p>
+                        <p>${meal.strMeal.length >= 16 ? meal.strMeal.substring(0, 8) + '..'
+                            : meal.strMeal.length > 10 && meal.strCategory.length > 10 ? 
+                            meal.strMeal.substring(0, 8) + '..' : meal.strMeal}</p>
                         <p class="slash">/</p>
                         <p>${meal.strCategory}</p>
                     </div>

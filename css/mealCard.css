@@ -68,7 +68,7 @@
 }
 
 .meal-cards .card .card-header p {
-    padding: 5px;
+    /* padding: 5px; */
     border-radius: 20px;
     font-size: 1.7rem;
     font-weight: 600;
@@ -83,12 +83,12 @@
 
 .meal-cards .card .card-header .slash {
     font-size: 3rem;
-    margin: 0px;
+    margin-right: 5px;
 }
 
 
 
-.shape {
+.meal-cards .shape {
     align-self: center;
     background-image: linear-gradient(147deg, #ffe53bc3 0%, #ff2525bd 74%);
 	animation: morph 8s ease-in-out infinite;
@@ -96,7 +96,7 @@
 	height: 150px;
 	width: 200px;
 	/* box-shadow: 0 0 20px #000; */
-    margin-top: -110px;
+    margin-top: -145px;
     margin-bottom: 10px;
     position: relative;
 }
