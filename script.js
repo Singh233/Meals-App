@@ -37,6 +37,7 @@ function showToast(message) {
         stopOnFocus: true, // Prevents dismissing of toast on hover
         style: {
             background: 'rgba(0, 0, 0, 0.375)',
+            webkitBackdropFilter: 'blur(15px)',
             backdropFilter: 'blur(8px)',
             border: '1px solid rgba(187, 187, 187, 0.187)',
             borderRadius: '10px',
@@ -533,7 +534,7 @@ let isChanged = false;
 const handleScroll = event => {
     const searchBar = document.getElementById('search-bar1');
     const dummySearchBar = document.getElementById('dummy-space');
-
+    const navBar = document.getElementsByClassName('sm-navbar')[0];
 
 
     if (window.scrollY >= 0 && window.scrollY <= 199) {
@@ -541,6 +542,8 @@ const handleScroll = event => {
         if (searchBar.classList.contains('search-bar2')) {
             searchBar.classList.add('animate__fadeOut');
             searchBar.classList.remove('animate__fadeIn');
+
+            // navBar.classList.remove('blur-bg');
 
             setTimeout(() => {
                 searchBar.classList.remove('search-bar2');
@@ -566,13 +569,11 @@ const handleScroll = event => {
 
             }, 500);
 
+            // navBar.classList.add('blur-bg');
+
 
             isChanged = true;
         }
-        
-
-
-
         
     } 
     

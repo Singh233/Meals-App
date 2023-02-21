@@ -100,8 +100,11 @@
             <p class="active"><i class="fa-solid fa-magnifying-glass"></i> Search</p>
             <p class="favorites-nav" onclick="showFavorites()"> <i class="fa-solid fa-heart"></i> Favorites</p>
             <p class="about-us-nav"><i class="fa-solid fa-address-card"></i> About Us</p>
-            <p style="color: whtie">Proudly developed by - <span>Sanambir Singh</span></p>
-            <img src="./img/profile.jpeg" alt="">
+            <div class="nav-footer">
+                <img src="./img/profile.jpeg" alt="">
+                <p style="color: whtie">Proudly developed by - <span>Sanambir Singh</span></p>
+            </div>
+            
 
         </div>
 
@@ -123,8 +126,8 @@
             <button>Search</button>
         </div>
 
+        <!-- Dummy space -->
         <div id="dummy-space" class="search-bar dummy-space hide">
-            <i class="fa-solid fa-magnifying-glass"></i>
             <input id="search-input" onkeyup="getList()" type="text" placeholder="Wanna cook apple pie?">
             <button>Search</button>
         </div>
