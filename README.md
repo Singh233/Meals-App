@@ -1,7 +1,7 @@
 
 # 🥘 Meal App
 
-A Meal app is a web application built using Vanilla JavaScript, HTML, and CSS that allows users to search for meals. The app has a simple and intuitive interface that allows users to add meals to their favorites list and search for meals they have already added.
+A Meal app is a web application built using Vanilla JavaScript, HTML, and CSS that allows users to search for meals. The app has a simple and intuitive interface that allows users to add meals to their favorites list and search for meals.
 
 The search feature of the app allows users to search for meals based on various criteria, such as the name of the meal or the ingredients used. This would allow users to easily find the meals they are looking for, without having to manually search through their entire library.
 
