@@ -80,7 +80,7 @@ body {
     position: fixed;
     bottom: 0;
     margin: 10px;
-    border-radius: 20px;
+    border-radius: 25px 10px;
     padding: 10px 20px;
     z-index: 1000;
 
@@ -112,6 +112,30 @@ body {
 }
 
 
+
+/* Scroll to top button */
+
+.scrollToTop {
+    padding: 20px;
+    background-color: black;
+    border-radius: 15px 25px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    cursor: pointer;
+    z-index: 1000;
+
+    background-color: rgba(0, 0, 0, 0.375);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    border: 1px solid rgba(187, 187, 187, 0.187);
+    transition: 0.3s all ease-in-out;
+}
+
+.scrollToTop:hover {
+    background-color: rgba(141, 141, 141, 0.375);
+}
 
 
 
@@ -326,6 +350,10 @@ body {
         font-size: 3.5rem;
     }
 
+    .scrollToTop {
+        bottom: 90px;
+        right: 15px;
+    }
 }
 
 

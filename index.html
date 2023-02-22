@@ -101,8 +101,9 @@
             <p class="favorites-nav" onclick="showFavorites()"> <i class="fa-solid fa-heart"></i> Favorites</p>
             <p class="about-us-nav"><i class="fa-solid fa-address-card"></i> About Us</p>
             <div class="nav-footer">
-                <img src="./img/profile.jpeg" alt="">
                 <p style="color: whtie">Proudly developed by - <span>Sanambir Singh</span></p>
+                <img src="./img/profile.jpeg" alt="">
+
             </div>
             
 
@@ -122,8 +123,8 @@
         <!-- Search Bar -->
         <div id="search-bar1" class="search-bar animate__animated">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input id="search-input" onkeyup="getList()" type="search" placeholder="Search for any Recipes">
-            <button>Search</button>
+            <input id="search-input" onclick="getList()" onkeyup="getList()" type="search" placeholder="Search for any Recipes">
+            <button onclick="getList()">Search</button>
         </div>
 
         <!-- Dummy space -->
@@ -161,6 +162,10 @@
         
         <!-- Cards list -->
 
+    </div>
+
+    <div onclick="scrollToTop()" class="scrollToTop animate__animated remove">
+        <i class="fa-solid fa-arrow-up"></i>
     </div>
 
 

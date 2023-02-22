@@ -1,7 +1,6 @@
 // To make a favourites meal array if it doesn't exist in local storage
 if (localStorage.getItem("favouritesList") == null) {
     localStorage.setItem("favouritesList", JSON.stringify([]));
-    console.log(localStorage.getItem("favouritesList"));
 }
 
 // fetch data from api and return it
@@ -55,57 +54,79 @@ function showToast(message) {
 
 // function to display meals on typing in search bar
 function getList() {
-    const mainContainer = document.getElementsByClassName('main-container')[0];
-    const searchValue = document.getElementById('search-input').value;
-    const url = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
-    fetchMealFromApi(url, searchValue)
-    .then((data) => {
-        console.log(data);
-        const cardsContainer = document.getElementById('cards-container');
-        mainContainer.classList.remove('center-main');
-        cardsContainer.innerHTML='';
-        let count = 0;
 
-        data.meals.forEach((meal) => {
+    // set timeout is used when cross button is clicked on search input to remove all cards
+    setTimeout(() => {
+        const mainContainer = document.getElementsByClassName('main-container')[0];
+        const searchValue = document.getElementById('search-input').value;
+        const url = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
+        
+        if (searchValue == '') {
+            const cardsContainer = document.getElementById('cards-container');
+            // remove all cards
+            cardsContainer.innerHTML = '';
+            mainContainer.classList.add('center-main');
+            return;
+        }
+        
+        fetchMealFromApi(url, searchValue)
+        .then((data) => {
+            const cardsContainer = document.getElementById('cards-container');
+            // remove all cards
+            cardsContainer.innerHTML = '';
+            console.log('get data', data, searchValue);
+            mainContainer.classList.remove('center-main');
 
-            const card = document.createElement('div');
-
-            const isFavorite = checkIfFavourite(meal.idMeal);
-
-            card.innerHTML = `
-                <div class="card animate__animated animate__fadeIn">
-                    <div class="card-img">
-                        <img src="${meal.strMealThumb}" alt="">
+            if (data.meals == null) {
+                const noResult = document.createElement('div');
+                noResult.innerHTML = `
+                    <div class="no-result">
+                        <p> No Result Found <i class="fa-solid fa-exclamation"></i></p>
                     </div>
+                `;
+                cardsContainer.appendChild(noResult);
+                return;
+            }
 
-                    <div class="card-header">
-                        <p>${meal.strMeal.length >= 16 ? meal.strMeal.substring(0, 8) + '..'
-                            : meal.strMeal.length > 10 && meal.strCategory.length > 10 ? 
-                            meal.strMeal.substring(0, 8) + '..' : meal.strMeal}</p>
-                        <p class="slash">/</p>
-                        <p>${meal.strCategory}</p>
-                    </div>
+            data.meals.forEach((meal) => {
 
-                    <div class="shape"></div>
+                const card = document.createElement('div');
 
-                    <div class="card-info">
-                        <p class="area"><i class="fa-solid fa-earth-americas"></i> ${meal.strArea}</p>
-                        <p class="tags"><i class="fa-solid fa-tags"></i> ${meal.strTags}</p>
-                    </div>
-                    
-                    <div class="card-footer">
-                        <p onclick='getMealDetails(${meal.idMeal})'>See Details </p>
-                        <i id='like-${meal.idMeal}' onclick="addRemoveFavourites(${meal.idMeal}, 'cardDetail')" class="${isFavorite ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+                const isFavorite = checkIfFavourite(meal.idMeal);
+
+                card.innerHTML = `
+                    <div class="card animate__animated animate__fadeIn">
+                        <div class="card-img">
+                            <img src="${meal.strMealThumb}" alt="">
+                        </div>
+
+                        <div class="card-header">
+                            <p>${meal.strMeal.length >= 16 ? meal.strMeal.substring(0, 8) + '..'
+                                : meal.strMeal.length > 10 && meal.strCategory.length > 10 ? 
+                                meal.strMeal.substring(0, 8) + '..' : meal.strMeal}</p>
+                            <p class="slash">/</p>
+                            <p>${meal.strCategory}</p>
+                        </div>
+
+                        <div class="shape"></div>
+
+                        <div class="card-info">
+                            <p class="area"><i class="fa-solid fa-earth-americas"></i> ${meal.strArea}</p>
+                            <p class="tags"><i class="fa-solid fa-tags"></i> ${meal.strTags}</p>
+                        </div>
                         
+                        <div class="card-footer">
+                            <p onclick='getMealDetails(${meal.idMeal})'>See Details </p>
+                            <i id='like-${meal.idMeal}' onclick="addRemoveFavourites(${meal.idMeal}, 'cardDetail')" class="${isFavorite ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+                            
+                        </div>
                     </div>
-                </div>
-            `;
-            setTimeout(() => {
+                `;
                 cardsContainer.appendChild(card);
-            }, count);
-            count += 200;
+            });
         });
-    });
+    }, 1);
+    
 }
 
 
@@ -113,6 +134,8 @@ function getList() {
 
 // function to display meal details
 function getMealDetails(mealId) {
+    // stop background scroll
+    document.body.style.overflowY = 'hidden';
 
     // add background overlay
     const overlay = document.getElementsByClassName('background-overlay')[0];
@@ -144,7 +167,7 @@ function getMealDetails(mealId) {
                         
                 
                         <div class="meal-header">
-                            <p>${meal.strMeal}</p>
+                            <p>${meal.strMeal.length > 15 ? meal.strMeal.substring(0, 10) : meal.strMeal}</p>
                             <p class="slash">/</p>
                             <p>${meal.strCategory}</p>
                         </div>
@@ -188,7 +211,7 @@ function getMealDetails(mealId) {
                         </div>
                 
                         <div class="recipe-info ">
-                            <p>${meal.strInstructions}</p>
+                            <p>${meal.strInstructions.length > 1000 ? meal.strInstructions.substring(0, 1000) : meal.strInstructions}</p>
                             
                         </div>
                         
@@ -209,6 +232,9 @@ function getMealDetails(mealId) {
 
 // function to close meal details 
 function closeMealDetails() {
+    // enable background scroll
+    document.body.style.overflowY = 'auto';
+
     const overlay = document.getElementsByClassName('background-overlay')[0];
     const mealDetails = document.getElementsByClassName('meal-details')[0];
 
@@ -232,6 +258,9 @@ function closeMealDetails() {
 
 // function to show favorites list
 function showFavorites() {
+    // stop background scroll
+    document.body.style.overflowY = 'hidden';
+
     const favoritesContainer = document.getElementsByClassName('favorites-container')[0];
     favoritesContainer.classList.remove('remove');
     favoritesContainer.classList.remove('animate__fadeOut');
@@ -277,7 +306,9 @@ function showFavorites() {
                     </div>
 
                     <div class="card-header">
-                        <p>${meal.strMeal.length}</p>
+                        <p>${meal.strMeal.length >= 16 ? meal.strMeal.substring(0, 8) + '..'
+                        : meal.strMeal.length > 10 && meal.strCategory.length > 10 ? 
+                        meal.strMeal.substring(0, 8) + '..' : meal.strMeal}</p>
                         <p class="slash">/</p>
                         <p>${meal.strCategory}</p>
                     </div>
@@ -308,6 +339,9 @@ function showFavorites() {
 
 // function to hide favorites list
 function hideFavorites() {
+    // enable background scroll
+    document.body.style.overflowY = 'auto';
+
     const favoritesContainer = document.getElementsByClassName('favorites-container')[0];
     // add background overlay
     const overlay = document.getElementsByClassName('background-overlay')[0];
@@ -367,8 +401,6 @@ function addRemoveFavourites(mealId, from) {
     // save the array to local storage
     localStorage.setItem("favouritesList", JSON.stringify(arr));
 
-console.log(from)
-console.log(mealId)
     // change the like icon of the cards list
     const heartIcon = document.getElementById(`like-${mealId}`);
     if (heartIcon.classList.contains('fa-regular')) {
@@ -435,7 +467,6 @@ console.log(mealId)
 function checkIfFavourite(mealId) {
     // get the array from local storage
     const arr = JSON.parse(localStorage.getItem("favouritesList"));
-    console.log(arr, parseInt(mealId));
     if (arr.includes(parseInt(mealId))) {
         return true;
     }
@@ -526,6 +557,18 @@ function toggleMenu() {
 }
 
 
+// function to scroll to top
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+
+
+
+
 
 let isChanged = false;
 
@@ -535,6 +578,7 @@ const handleScroll = event => {
     const searchBar = document.getElementById('search-bar1');
     const dummySearchBar = document.getElementById('dummy-space');
     const navBar = document.getElementsByClassName('sm-navbar')[0];
+    const scrollToTop = document.getElementsByClassName('scrollToTop')[0];
 
 
     if (window.scrollY >= 0 && window.scrollY <= 199) {
@@ -543,6 +587,8 @@ const handleScroll = event => {
             searchBar.classList.add('animate__fadeOut');
             searchBar.classList.remove('animate__fadeIn');
 
+            scrollToTop.classList.add('animate__fadeOut');
+            searchBar.classList.remove('animate__fadeIn');
             // navBar.classList.remove('blur-bg');
 
             setTimeout(() => {
@@ -550,7 +596,8 @@ const handleScroll = event => {
                 searchBar.classList.add('animate__fadeIn');
                 searchBar.classList.remove('animate__fadeOut');
                 dummySearchBar.classList.add('hide');
-
+                scrollToTop.classList.add('animate__fadeIn');
+                searchBar.classList.remove('animate__fadeOut');
             }, 500);
 
             isChanged = false;
@@ -566,6 +613,11 @@ const handleScroll = event => {
                 searchBar.classList.add('animate__fadeIn');
                 searchBar.classList.remove('animate__fadeOut');
                 dummySearchBar.classList.remove('hide');
+
+                scrollToTop.classList.remove('remove');
+                scrollToTop.classList.remove('animate__fadeOut');
+                scrollToTop.classList.add('animate__fadeIn');
+
 
             }, 500);
 
